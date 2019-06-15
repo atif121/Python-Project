@@ -1,0 +1,38 @@
+{% extends 'store/base.html' %}
+{% include 'store/slide.html' %}
+{% load static %}
+{% block title %}
+    {% if category %}{{ category.name }} {% else %} Books {% endif %}
+{% endblock %}
+{% block content %}
+
+
+
+<body>
+
+</body>
+
+<div class="container">
+      <div class="row" style="margin-top: 3%" >
+        <div class="col-sm-8 blog-main" >
+            <div class="blog-post">
+                <div class="row" >
+                  <div class="card" style="height: 100%; width: 100%; ">
+                      <div class="card-body" style="background-color: lightsteelblue">
+                          <div class="col-md-6 text-right" >
+                              <img  src="{% if book.image %} {{ book.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}" alt="..." style="height: auto; width: auto;">
+                          </div>
+                          <div class="col-md-6" style="padding-left: 20px;">
+                              <h3 style="color: navy">{{ book.name }}</h3>
+                              <h6><a style="color: navy" href="{{ book.category.get_absolute_url }}">{{ book.category }}</a></h6>
+                              <h1 class="text-muted" style="color: navy">Rs. {{ book.price }}</h1>
+                              <p style="color: navy ; font-size: large">Description :- {{ book.description|safe|linebreaksbr }}</p>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div><!-- /.blog-post -->
+        </div><!-- /.blog-main -->
+    </div><!-- /.row -->
+  </div><!-- /.container -->
+{% endblock %}

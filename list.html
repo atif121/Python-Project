@@ -1,0 +1,52 @@
+{% extends 'store/base.html' %}
+
+{% load static %}
+{% block title %}
+    {% if category %}{{ category.name }} {% else %} Books {% endif %}
+{% endblock %}
+{% block content %}
+{% include 'store/slide.html' %}
+<div class="container-fluid">
+      <div class="row" style="margin-top: 0%">
+        <div class="col-sm-8 blog-main">
+          <div class="blog-post">
+              <div class="row">
+                  {% for book in books %}
+                      <div class="column" >
+                        <div class="card" alt="..." style="background-color:powderblue;width: auto; height: auto; margin-bottom: 10px;">
+                            <div class="card-body" style="border: navy">
+                            <img class="card-img-top" src="{% if book.image %} {{ book.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}" alt="..." style="width: 400px; height: 300px">
+                          
+                            <a href="{{ book.get_absolute_url }}">
+                                
+                            </a>
+                            <div class="caption">
+                                <h3 class="text-center" >
+                                    <a style="color:navy"href="{{ book.get_absolute_url }}">{{ book.name }}</a>
+                                </h3>
+                                <p class="text-center" style="color:navy">Rs. {{ book.price }}</p>
+                            </div>
+                            </div>
+                        </div>
+                      </div>
+                  {% endfor %}
+              </div>
+          </div><!-- /.blog-post -->
+        </div><!-- /.blog-main -->
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+            <div class="sidebar-module" >
+              <h4 style="font-size: 40px">Categories</h4>
+              <ol class="list-unstyled">
+                <li {% if not category %} class="active"{% endif %}><a style="background :url(static/img/background1.jpg) fixed; font-size: 35px" href="{% url 'store:book_list' %}">All</a></li>
+              {% for c in categories %}
+                <li {% if category.slug == c.slug %} class="active"{% endif %}>
+                    <a style=" font-size: 27px" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                </li>
+              {% endfor %}
+              </ol>
+            </div>
+          </div><!-- /.blog-sidebar -->
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+  {% endblock %}
+  

@@ -1,0 +1,12 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 10px; background-color: black;">
+  <a class="navbar-brand"  href="" style="color:  white">Online Book store</a>&nbsp;&nbsp;&nbsp;
+        <form method="GET" action="." style="margin: 0">
+          <input  id="search_box" type="text" name="q"  placeholder="Search" >
+          <button id="search_submit" type="submit" style="align-self: flex-end">Submit</button>
+        </form>
+         <a class="nav navbar-nav navbar-right">
+          <a style="color: whitesmoke; font-family: fantasy; font-size: 20px; height: 40px ; width: 70px; " href="{% url 'store:book_list' %}">Home</a>
+          <a style="color: whitesmoke; font-family: fantasy; font-size: 20px; height: 40px ; width: 70px;" href="{% url 'store:about1' %}">About</a>
+         </a>
+</nav>
+
